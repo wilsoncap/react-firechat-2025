@@ -1,21 +1,10 @@
 import { toast } from "sonner"
-import { Button } from "../../components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card"
+import { Card, CardContent, CardDescription,CardHeader, CardTitle } from "../../components/ui/card"
 import { useAuthActions } from "../../hooks/use-auth.actions"
+import CardFooterAuth from "../../components/card-footer-uath"
 
 const LoginPage = () => {
-  const {loginWithgoogle} = useAuthActions()// del hook
-
-  const handleLoginWithGoogle = async () => {
-    toast.error("login failed: ")
-    const result = await loginWithgoogle();
-    if (result.success) {
-      console.log("Login successful");
-    } else {
-      console.error("Login failed:", result.error);
-      toast.error("login failed: ")
-    }
-  };
+  const {loginWithgoogle, loading} = useAuthActions()// del hook
 
   return (
     <Card>
@@ -27,11 +16,10 @@ const LoginPage = () => {
         <CardContent>
           ...
         </CardContent>
-        <CardFooter>
-          <Button className="w-full" onClick={handleLoginWithGoogle}>
-            Loguin with handleLoginWithGoogle
-          </Button>
-        </CardFooter>
+        <CardFooterAuth 
+        type="login"
+        loading={loading}
+        />
       </CardHeader>
     </Card>
   )
