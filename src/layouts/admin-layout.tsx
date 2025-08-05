@@ -2,6 +2,8 @@ import { Navigate } from "react-router";
 import { Outlet } from "react-router"
 import { useSigninCheck } from "reactfire"
 
+import Nabvar from "../components/nabvar";
+
 const AdminLayout = () => {
   const {status, data: sigIncheckResult, hasEmitted} = useSigninCheck();
 
@@ -17,7 +19,10 @@ const AdminLayout = () => {
   
   return (
     <div>
+      <Nabvar />
+      <div className="p-4">
       <Outlet />
+      </div>
     </div>
   )
 }
