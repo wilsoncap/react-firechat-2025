@@ -9,6 +9,7 @@ import {
     type AuthError,  
     signOut
 } from "firebase/auth";
+import { useUserActions } from "./use-ser-actions";
 
 interface AuthActionResponse {
     success: boolean,
@@ -18,6 +19,7 @@ interface AuthActionResponse {
 export const useAuthActions = () =>{
     const [loading, setLoading] = useState(false);
     const auth = useAuth()
+    const {createOrUpdateUser} = useUserActions()
 
     const login = async(data: {email:string; password: string}):
     Promise<AuthActionResponse>=>{
@@ -49,6 +51,8 @@ export const useAuthActions = () =>{
                     displayName: data.displayName
                 })
 
+                await createOrUpdateUser(currentUser.user)
+
                 await currentUser.user.reload()
             }
             return {
@@ -70,7 +74,10 @@ export const useAuthActions = () =>{
         setLoading(true)
         try {
             const provider = new GoogleAuthProvider()
-            const result = await signInWithPopup(auth, provider)
+            const data = await signInWithPopup(auth, provider)
+
+            await createOrUpdateUser(data.user)
+
             return {
                 success: true,
                 error: null
