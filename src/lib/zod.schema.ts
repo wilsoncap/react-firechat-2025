@@ -43,3 +43,10 @@ export const taskZodSchema = z.object({
 })
 
 export type TaskZodSchemaType = z.infer<typeof taskZodSchema>
+
+
+export const messageZodSchema = z.object({
+  text: z.string().trim().min(1, "Por favor escriba algo")
+})
+
+export type MessageZodSchemaType = z.infer<typeof messageZodSchema>

@@ -1,7 +1,7 @@
 import type { User } from "firebase/auth"
 import { useFirestore } from "reactfire"
 import type { UserFirestore } from "../schemas/user.schema"
-import { setDoc } from "firebase/firestore"
+import { doc, setDoc } from "firebase/firestore"
 
 //services and repositorys
 export const useUserActions = () =>{

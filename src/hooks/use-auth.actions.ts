@@ -31,7 +31,7 @@ export const useAuthActions = () =>{
                 error: null
             }
         } catch (error) {
-            const authError = error as AutError
+            const authError = error as AuthError
             return {
                 success: false,
                 error: authError
@@ -60,7 +60,7 @@ export const useAuthActions = () =>{
                 error: null
             }
         } catch (error) {
-            const authError = error as AutError
+            const authError = error as AuthError
             return {
                 success: false,
                 error: authError
@@ -83,7 +83,7 @@ export const useAuthActions = () =>{
                 error: null
             }
         } catch (error) {
-            const authError = error as AutError
+            const authError = error as AuthError
             return {
                 success: false,
                 error: authError
