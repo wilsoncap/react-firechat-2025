@@ -4,7 +4,8 @@ import {
 LayoutDashboard,
 MessageCircle,
 User,
-LogOut
+LogOut,
+ClipboardCheck
 } from "lucide-react"
 import { href, NavLink } from "react-router"
 import { useAuthActions } from "../hooks/use-auth.actions"
@@ -15,6 +16,7 @@ const navigation = [
   {name: "Dashboard", href: "/admin", icon: LayoutDashboard},
   {name: "Messages", href: "/admin/chat", icon: MessageCircle},
   {name: "Profile", href: "/admin/profile", icon: User},
+  {name: "Tasks", href: "/admin/tasks", icon: ClipboardCheck},
 ]
 
 

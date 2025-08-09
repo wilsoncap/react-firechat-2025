@@ -1,0 +1,19 @@
+import React from 'react'
+import { useTaskActions } from '../../hooks/use-task-action'
+import { json } from 'zod';
+import ItemTask from './item-task';
+
+const TaskList = () => {
+  const {tasks} = useTaskActions();
+  return (
+    <div className='space-y-4 mt-4'>
+        {
+            tasks.map((task) =>(
+                <ItemTask key={task.id} task={task} />
+            ))
+        }
+    </div>
+  )
+}
+
+export default TaskList

@@ -34,15 +34,16 @@ const LoginPage = () => {
 
     if (!response.success) {
       if (response.error?.code === 'auth/invalid-login-credentials') {
-        form.setError("email", {
-          type: "manual",
-          message: "Invalid email or password.",
-        });
+        // form.setError("email", {
+        //   type: "manual",
+        //   message: "Invalid email or password.",
+        // });
 
-         form.setError("password", {
-          type: "manual",
-          message: "Invalid email or password.",
-        });
+        //  form.setError("password", {
+        //   type: "manual",
+        //   message: "Invalid email or password.",
+        // });
+        toast.error('Invalid email or pasword')
       }
     }
     

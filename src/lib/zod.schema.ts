@@ -31,7 +31,15 @@ export const profileZodSchema = z.object({
     .string()
     .min(1, "Display name is required")
     .max(50, "Display name must be at most 50 characteres long"),
-  photoURL: z.url().optional()
+  photoURL: z.union([z.url("Invalid URL format"), z.literal("")]).optional(),
 })
 
 export type ProfileFormSchemaType =  z.infer<typeof profileZodSchema>
+
+
+export const taskZodSchema = z.object({
+  title: z.string().min(1, "title is required").max(100, "title must ne at most 100 chatacters long"),
+  description: z.string().max(500, "Description must be at most 500 chatacters long").optional(),
+})
+
+export type TaskZodSchemaType = z.infer<typeof taskZodSchema>
