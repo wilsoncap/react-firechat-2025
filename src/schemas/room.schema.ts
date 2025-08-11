@@ -15,7 +15,7 @@ export interface LastMessage {
 }
 
 
-export interface Messages {
+export interface Message {
     id: string
     text: string,
     senderId: string,
