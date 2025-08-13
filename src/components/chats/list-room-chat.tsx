@@ -10,14 +10,17 @@ interface Props {
 const ListRoomChat = ({handleClickRoomId}: Props) => {
   const {rooms} = useRoomActions();
   return (
-    <div>
+    <div >
         {
             rooms.map((room)=>(
                 // <Button key={room.id} onClick={()=>handleClickRoomId(room.id)}>{room.id}</Button>
-                <RoomChat key={room.id}  room={room} handleClickRoomId={handleClickRoomId}/>
+                // <RoomChat key={room.id}  room={room} handleClickRoomId={handleClickRoomId}/>
+                <div key={room.id} className="py-2 hover:bg-blue-200">
+                <RoomChat room={room} handleClickRoomId={handleClickRoomId} />
+                </div>
+                
             ))
         }
-        {/* <pre> {JSON.stringify(rooms, null, 2)}</pre> */}
     </div>
   )
 }

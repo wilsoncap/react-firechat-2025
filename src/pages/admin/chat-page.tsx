@@ -4,7 +4,7 @@ import MessagesChat from "../../components/chats/messages-chat"
 import FormMenssageChat from "../../components/chats/form-menssage-chat"
 import FormSearchFrined from "../../components/chats/form-search-friend"
 import { Button } from "../../components/ui/button"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, MessageCircleMore } from "lucide-react"
 
 const ChatPage = () => {
   const [roomId, setRoomId] = useState("")
@@ -59,6 +59,7 @@ const ChatPage = () => {
           </Suspense>
         ) : (
           <div className="flex-1 flex items-center justify-center text-muted-foreground">
+            <MessageCircleMore size={68} />
             Selecciona una sala para chatear
           </div>
         )}
