@@ -1,21 +1,19 @@
 import { messageZodSchema, type MessageZodSchemaType } from "../../lib/zod.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-
+import { Send, Loader2 } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
 
 import { useTransition } from "react";
 import { useMessageActions } from "../../hooks/use-message-actions";
-import { toast } from "sonner";
 
 
 interface Props {
@@ -48,17 +46,17 @@ const FormMessageChat = ({roomId }: Props) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-2"
+        className="flex items-center gap-2"
       >
         <FormField
           control={form.control}
           name="text"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Ingrese Texto</FormLabel>
+            <FormItem className="flex-1">
               <FormControl>
                 <Input
-                  placeholder="Escriba su mensaje"
+                  className="bg-background"
+                  placeholder="Escribe un mensaje..."
                   {...field}
                 />
               </FormControl>
@@ -66,10 +64,18 @@ const FormMessageChat = ({roomId }: Props) => {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isLoading}>
-          {
-            isLoading ? "Enviando" : "Enviar Message"
-          }
+        <Button 
+          type="submit" 
+          size="icon"
+          disabled={isLoading}
+          className="shrink-0"
+        >
+          {isLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <Send className="h-4 w-4" />
+          )}
+          <span className="sr-only">Enviar mensaje</span>
         </Button>
       </form>
     </Form>

@@ -7,7 +7,7 @@ User,
 LogOut,
 ClipboardCheck
 } from "lucide-react"
-import { href, NavLink } from "react-router"
+import { NavLink } from "react-router"
 import { useAuthActions } from "../hooks/use-auth.actions"
 import { Button } from "./ui/button"
 import { cn } from "../lib/utils"
@@ -23,34 +23,63 @@ const navigation = [
 const Nabvar = () => {
   const {logout} = useAuthActions();
   return (
-    <header className="shadow-md border-b">
-      <nav className="p-4 flex gap-4">
-        {
-          navigation.map(item =>(
-            <NavLink
-            key={item.name}
-            to={item.href}
-            className={
-              ({isActive}) => (
-                cn(
-                  "text-gray-700 hover:text-blue-800 flex items-center gap-2",
-                  isActive ? "text-blue-800 font-semibold" : "text-gray-700"
-                )
-              )
-            }
-            end
+    <header className="border-b bg-card">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          <div className="flex flex-1">
+            <div className="hidden md:flex items-center space-x-4">
+              {navigation.map(item => (
+                <NavLink
+                  key={item.name}
+                  to={item.href}
+                  className={({isActive}) => cn(
+                    "inline-flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                    "hover:bg-accent hover:text-accent-foreground",
+                    isActive 
+                      ? "bg-secondary text-secondary-foreground" 
+                      : "text-muted-foreground"
+                  )}
+                  end
+                >
+                  <item.icon className="w-4 h-4 mr-2" />
+                  {item.name}
+                </NavLink>
+              ))}
+            </div>
+          </div>
+
+          <div className="md:hidden flex items-center space-x-2">
+            {navigation.map(item => (
+              <NavLink
+                key={item.name}
+                to={item.href}
+                className={({isActive}) => cn(
+                  "inline-flex items-center p-2 rounded-md",
+                  "hover:bg-accent hover:text-accent-foreground",
+                  isActive 
+                    ? "bg-secondary text-secondary-foreground" 
+                    : "text-muted-foreground"
+                )}
+                end
+              >
+                <item.icon className="w-5 h-5" />
+                <span className="sr-only">{item.name}</span>
+              </NavLink>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-end space-x-4">
+            <Button 
+              variant="ghost"
+              size="sm"
+              onClick={logout}
+              className="text-muted-foreground hover:text-primary"
             >
-              <item.icon className="w-5 h-5" />
-              {item.name}
-            </NavLink>
-          ))
-        }
-        <Button 
-          className="ml-auto"
-          onClick={logout}>
-          <LogOut className="w-5 h-5 mr-2"/>
-          Logout
-        </Button>
+              <LogOut className="w-4 h-4 md:mr-2" />
+              <span className="hidden md:inline">Logout</span>
+            </Button>
+          </div>
+        </div>
       </nav>
     </header>
   )

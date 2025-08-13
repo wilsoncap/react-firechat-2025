@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { emailFriendZodSchema, type emailFrindZodSchemaType } from "../../lib/zod.schema"
-
+import { Search, Loader2 } from "lucide-react"
 import { Button } from "../ui//button"
 import {
   Form,
@@ -45,23 +45,40 @@ const FormSearchFrined = ({handleClickRoomId}: Props) => {
   }
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex gap-2">
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="flex-1">
               <FormControl>
-                <Input type="emal" placeholder="shadcn@gmail.com" {...field} />
+                <div className="relative">
+                  <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                  <Input 
+                    type="email" 
+                    placeholder="Buscar por email..." 
+                    className="pl-8 bg-background"
+                    {...field} 
+                  />
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" variant={"outline"} className="w-full" disabled={isLoading}>
-            {
-                isLoading ? "Buscando Friend ..." : "Buscar"
-            }
+        <Button 
+          type="submit" 
+          variant="secondary"
+          size="icon"
+          disabled={isLoading}
+          className="shrink-0"
+        >
+          {isLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <Search className="h-4 w-4" />
+          )}
+          <span className="sr-only">Buscar amigo</span>
         </Button>
       </form>
     </Form>
