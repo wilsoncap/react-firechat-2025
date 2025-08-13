@@ -11,29 +11,38 @@ const ChatPage = () => {
     setRoomId(id)
   }
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-      <section className="space-y-2">
-      {/* mostrar rooms */}
-      <Suspense fallback={"Cargando rooms..."}>
-          <FormSearchFrined handleClickRoomId={handleClickRoomId}/>
-          <ListRoomChat  handleClickRoomId={handleClickRoomId}/>
-      </Suspense>
+    <div className="h-[calc(100vh-4rem)] flex flex-col md:flex-row gap-4 p-4">
+      <section className="md:w-1/3 lg:w-1/4 border rounded-lg shadow-sm h-full overflow-hidden flex flex-col">
+        <div className="p-4 border-b">
+          <Suspense fallback={"Cargando búsqueda..."}>
+            <FormSearchFrined handleClickRoomId={handleClickRoomId}/>
+          </Suspense>
+        </div>
+        <div className="flex-1 overflow-y-auto p-2">
+          <Suspense fallback={"Cargando rooms..."}>
+            <ListRoomChat handleClickRoomId={handleClickRoomId}/>
+          </Suspense>
+        </div>
       </section>
 
-      <section>
-        {/* mostrar messages */}
-        {
-          roomId ? (
-            <Suspense fallback={<div>Cargendo chats de la sala...</div>}>
-              <FormMenssageChat roomId={roomId} />
-              <MessagesChat roomId={roomId} />
-            </Suspense>
-          ) :(
-            <div>Selecciones una sala para chatear</div>
-          )
-        }
+      <section className="md:w-2/3 lg:w-3/4 border rounded-lg shadow-sm h-full flex flex-col">
+        {roomId ? (
+          <Suspense fallback={<div className="flex-1 flex items-center justify-center">Cargando chats de la sala...</div>}>
+            <div className="flex flex-col h-full">
+              <div className="flex-1 overflow-y-auto p-4">
+                <MessagesChat roomId={roomId} />
+              </div>
+              <div className="border-t p-4">
+                <FormMenssageChat roomId={roomId} />
+              </div>
+            </div>
+          </Suspense>
+        ) : (
+          <div className="flex-1 flex items-center justify-center text-muted-foreground">
+            Selecciona una sala para chatear
+          </div>
+        )}
       </section>
-
     </div>
   )
 }
