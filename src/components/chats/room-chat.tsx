@@ -12,7 +12,6 @@ const RoomChat = ({room,handleClickRoomId}: Props) => {
   const {data: user} = useUser();
   const friendUID = room.participants.find((id) => id !== user?.uid) || "";
   const {friend} = useFriendInfo(friendUID)
-  console.log('friend', friend.photoUrl);
 
   return (
     // <Button variant={""} onClick={() => handleClickRoomId(room.id)}>

@@ -1,5 +1,5 @@
 import { toast } from "sonner"
-import { Card, CardContent, CardDescription,CardHeader, CardTitle } from "../../components/ui/card"
+import { Card, CardContent,CardHeader, CardTitle } from "../../components/ui/card"
 import {
   Form,
   FormControl,
@@ -7,8 +7,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "../../components/ui/form";
+import { Input } from "../../components/ui/input";
 import { useAuthActions } from "../../hooks/use-auth.actions"
 import CardFooterAuth from "../../components/card-footer-uath"
 
@@ -30,7 +30,6 @@ const LoginPage = () => {
 
   const onSubmit = async (data: LoginZodSchemaType) =>{
     const response = await login(data)
-    console.log('respose', response);
 
     if (!response.success) {
       if (response.error?.code === 'auth/invalid-login-credentials') {

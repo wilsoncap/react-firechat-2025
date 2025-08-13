@@ -1,6 +1,4 @@
-import React from 'react'
 import { useTaskActions } from '../../hooks/use-task-action'
-import { json } from 'zod';
 import ItemTask from './item-task';
 
 const TaskList = () => {

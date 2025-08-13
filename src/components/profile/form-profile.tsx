@@ -2,7 +2,7 @@ import { useProfileActions } from "../../hooks/use-profile-actions"
 import { zodResolver } from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form"
 import { profileZodSchema, type ProfileFormSchemaType } from "../../lib/zod.schema";
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 import {
   Form,
   FormControl,
@@ -10,8 +10,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "../ui/form";
+import { Input } from "../ui/input";
 import type {User } from 'firebase/auth';
 import { toast } from "sonner";
 
@@ -38,11 +38,10 @@ const FormProfile = ({user}: Props) => {
   const onSubmit = async (data: ProfileFormSchemaType) => {
     const result = await updateUserProfile({
       displayName: data.displayName,
-      photoURL: data.photoURL,
+      photoUrl: data.photoURL,
     });
 
-    if (result?.error) {
-      console.error("Error updating profile:", result.error);
+    if (!result?.success) {
       toast.error('Error try update profile')
     } else {
       toast.success('Profile update success')

@@ -1,5 +1,4 @@
 import { getAuth } from "firebase/auth";
-import { get } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { AuthProvider, FirestoreProvider, StorageProvider, useFirebaseApp } from "reactfire";

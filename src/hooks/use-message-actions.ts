@@ -57,7 +57,7 @@ export const useMessageActions = (roomId: string) => {//recibe el id de la sala
   }
 
   return { 
-    messages: messages as Messages[],
+    messages: messages as Message[],
     sendMessage
  };
 };

@@ -1,12 +1,12 @@
 
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "../../components/ui/card";
 import {
   Form,
   FormControl,
@@ -14,8 +14,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "../../components/ui/form";
+import { Input } from "../../components/ui/input";
 import { useAuthActions } from "../../hooks/use-auth.actions"
 import { registerZodSchema, type RegisterZodSchemaType } from "../../lib/zod.schema";
 import { zodResolver } from "@hookform/resolvers/zod";

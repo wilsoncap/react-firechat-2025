@@ -1,5 +1,4 @@
 import { useRoomActions } from "../../hooks/use-room-actions"
-import { Button } from "../ui/button";
 import RoomChat from "./room-chat";
 
 interface Props {

@@ -1,7 +1,6 @@
 import type { Room } from "../schemas/room.schema";
 import { addDoc, collection, getDocs, query, serverTimestamp, where } from "firebase/firestore";
 import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
-import FriendEmail from "../components/chats/friend-email";
 
 
 export const useRoomActions = () => {
